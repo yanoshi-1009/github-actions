@@ -5,10 +5,10 @@ jobs:
   update-babel-config-corejs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          persist-credentials: false
-          fetch-depth: 0
+#       - uses: actions/checkout@v3
+#         with:
+#           persist-credentials: false
+#           fetch-depth: 0
       - name: Create local changes
         run: |
           VERSION=`cat package.json| grep core-js | grep -o '3\.[0-9]\{1,2\}'`
@@ -19,7 +19,8 @@ jobs:
         id: commit_files
         continue-on-error: true
         run: |
-          git config --local user.name "github-actions[bot]"
+          git config --local user.name "github-actions"
+          git config user.email github-actions@github.com
           git commit -m "Update babel.config.js core-js" babel.config.js
       - name: Push changes
         if: steps.commit_files.outcome == 'success'
