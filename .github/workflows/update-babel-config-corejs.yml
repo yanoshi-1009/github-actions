@@ -12,6 +12,7 @@ jobs:
       - name: Create local changes
         run: |
           VERSION=`cat package.json| grep core-js | grep -o '3\.[0-9]\{1,2\}'`
+          echo $VERSION
           ROW=`cat babel.config.js| sed -n "/corejs/="`
           sed -i -e ""$ROW"s/3\.[0-9]\{1,2\}/$VERSION/g" babel.config.js
       - name: Commit files
