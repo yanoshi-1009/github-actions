@@ -1,4 +1,4 @@
-name: Check npm install
+name: On commit
 on:
    workflow_call:
 jobs:
